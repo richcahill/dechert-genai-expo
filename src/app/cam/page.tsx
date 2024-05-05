@@ -3,13 +3,10 @@
 
 import * as fal from "@fal-ai/serverless-client";
 import { MutableRefObject, useEffect, useRef, useState } from "react";
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Slider } from "@/components/ui/slider";
 import NavBar from "@/components/nav-bar";
 import SideBar from "@/components/sidebar";
 import Icon from "@/components/icon";
-import dynamicIconImports from "lucide-react/dynamicIconImports";
 
 fal.config({
   proxyUrl: "/api/fal/proxy",
@@ -145,7 +142,7 @@ export default function WebcamPage() {
     "fal-ai/sd-turbo-real-time-high-fps-msgpack-a10g",
     {
       connectionKey: "camera-turbo-demo",
-      throttleInterval: 0,
+      throttleInterval: 500,
       onResult(result) {
         if (processedImageRef.current && result.image) {
           const blob = new Blob([result.image], { type: "image/jpeg" });
@@ -207,7 +204,7 @@ export default function WebcamPage() {
               alt="generated"
             />
           </div>
-          <div className="controls h-32 flex p-4">
+          <div className="controls h-32 flex p-4 gap-4">
             <div className="flex flex-1 flex-col gap-2">
               <div>Who would you like to appear as?</div>
               <input
@@ -219,11 +216,10 @@ export default function WebcamPage() {
               />
             </div>
             <Button
-              className=""
+              className="h-full aspect-square"
               onClick={() => {
                 setEnabled(!enabled);
               }}
-              size="icon"
             >
               {enabled ? <Icon name={"pause"} /> : <Icon name={"play"} />}
             </Button>

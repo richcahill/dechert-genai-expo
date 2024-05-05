@@ -42,7 +42,7 @@ export default function WebcamPage() {
       "fal-ai/fast-animatediff/turbo/text-to-video",
       {
         input: {
-          prompt: prompt,
+          prompt: `${prompt}, masterpiece, best quality, minimal, photorealistic`,
         },
         logs: true,
         onQueueUpdate: (update) => {
@@ -83,7 +83,7 @@ export default function WebcamPage() {
           </div>
           <div className="controls h-32 flex p-4 gap-4">
             <div className="flex flex-1 flex-col gap-2">
-              <div>What would you like to generate a drawing of?</div>
+              <div>What would you like to generate a video of?</div>
               <input
                 value={prompt}
                 onChange={(e) => setPrompt(e.target.value)}
@@ -104,7 +104,7 @@ export default function WebcamPage() {
           </div>
         </div>
         <SideBar
-          name="Video Generation Models"
+          name="Animated Gif Generation"
           description="AI Expo"
           number={2}
           questions={[

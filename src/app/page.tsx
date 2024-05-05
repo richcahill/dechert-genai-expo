@@ -36,9 +36,13 @@ export default function WebcamPage() {
           <Link key={i} href={app.route}>
             <div
               key={i}
-              className="flex flex-col gap-2 items-start justify-between w-96 p-6 border bg-white hover:bg-zinc-50 rounded-md aspect-video hover:-translate-y-2 transition-all"
+              className="flex flex-col gap-2 items-start justify-end w-96 p-6 border bg-white hover:bg-zinc-50 rounded-md aspect-video hover:-translate-y-2 transition-all relative cursor-pointer overflow-hidden"
             >
-              <Icon name={app.icon as keyof typeof dynamicIconImports} />
+              <Icon
+                name={app.icon as keyof typeof dynamicIconImports}
+                className="w-44 h-44 opacity-5 absolute -top-5 -left-4"
+                strokeWidth={1}
+              />
               <div className="flex flex-col gap-2">
                 <p className="text-xl opacity-25">#{app.number}</p>
                 <h2 className="text-2xl font-medium">{app.name}</h2>
