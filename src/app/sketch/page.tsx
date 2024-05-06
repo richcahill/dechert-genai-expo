@@ -9,7 +9,7 @@ import SideBar from "@/components/sidebar";
 import Icon from "@/components/icon";
 import { Loader, Pencil, Wand } from "lucide-react";
 
-export const styles = [
+const styles = [
   {
     title: "Pastel Color Illustration",
     prompt:
