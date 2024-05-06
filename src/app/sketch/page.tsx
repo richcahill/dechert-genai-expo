@@ -91,9 +91,9 @@ export default function WebcamPage() {
           </div>
         </div>
         <SideBar
-          name="Video Generation Models"
+          name="Automatic Illustration Generation"
           description="AI Expo"
-          number={2}
+          number={3}
           questions={[
             "What is AI?",
             "How does AI work?",
