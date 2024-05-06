@@ -7,57 +7,51 @@ import { Button } from "@/components/ui/button";
 import NavBar from "@/components/nav-bar";
 import SideBar from "@/components/sidebar";
 import Icon from "@/components/icon";
-import { Loader, Wand } from "lucide-react";
+import { Loader, Pencil, Wand } from "lucide-react";
 
-fal.config({
-  proxyUrl: "/api/fal/proxy",
-});
+export const styles = [
+  {
+    title: "Pastel Color Illustration",
+    prompt:
+      "Create an illustration where the style should be minimalistic with a pastel color palette, clean lines, and a hand-drawn, sketchy feel but with chunky lines. The illustration should have perspective that gives a sense of depth, and the overall tone should be inviting and informative. Use a limited color scheme with soft hues and ensure that the lines are not too sharp. The illustration should be of ",
+  },
+  {
+    title: "Sharpie Sketch",
+    prompt:
+      "Create an illustration where the style should be simple hand drawn in the style of a minimalist sharpie sketch using and using only black and white. The illustration should be of ",
+  },
+  {
+    title: "Realistic Scene",
+    prompt:
+      "Create a realistic photo where the style is minimalist and professional. The photo should be of ",
+  },
+];
 
 const EMPTY_IMG =
   "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAA1JREFUGFdjOHPmzH8ACDADZKt3GNsAAAAASUVORK5CYII=";
 
 export default function WebcamPage() {
   const [inProgress, setInProgress] = useState(false);
-  const [prompt, setPrompt] = useState<string>("a little toad on a lily pad");
+  const [prompt, setPrompt] = useState<string>(
+    "a group of people sitting around a campfire in the woods"
+  );
   const [imageUrl, setImageUrl] = useState<string | null>(null);
-  const [videoUrl, setVideoUrl] = useState<string | null>(null);
 
   const getImage = async () => {
     setInProgress(true);
 
-    // const image = await fal.subscribe("fal-ai/fast-turbo-diffusion", {
-    //   input: {
-    //     prompt:
-    //       "A cinematic shot of a baby racoon wearing an intricate italian priest robe.",
-    //   },
-    //   logs: true,
-    //   onQueueUpdate: (update) => {
-    //     if (update.status === "IN_PROGRESS" && update.logs) {
-    //       update.logs.map((log) => log.message).forEach(console.log);
-    //     }
-    //   },
-    // });
+    let sketchPrompt = styles[0].prompt + prompt;
 
-    const result = (await fal.subscribe(
-      "fal-ai/fast-animatediff/turbo/text-to-video",
-      {
-        input: {
-          prompt: prompt,
-        },
-        logs: true,
-        onQueueUpdate: (update) => {
-          if (update.status === "IN_PROGRESS" && update.logs) {
-            update.logs.map((log) => log.message).forEach(console.log);
-          }
-        },
-      }
-    )) as any;
+    const response = await fetch("/api/openai", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ prompt: sketchPrompt }),
+    });
+    const data = await response.json();
     setInProgress(false);
-    // setImageUrl(image.result.url);
-    if (result.video.url) {
-      setVideoUrl(result.video.url);
-    }
-    console.log(result);
+    setImageUrl(data[0].url);
   };
 
   return (
@@ -66,20 +60,13 @@ export default function WebcamPage() {
       <div className="flex-1 grid grid-cols-4 p-4 gap-2">
         <div className=" flex flex-col bg-zinc-50 col-span-3 rounded-md border relative overflow-hidden">
           <div className="w-full flex-1 flex items-center aspect-video overflow-hidden">
-            {/* <img
+            <img
               src={imageUrl || EMPTY_IMG}
               width={512}
               height={512}
               className="w-full"
               alt="generated"
-            /> */}
-            <video
-              src={videoUrl || ""}
-              controls
-              className="w-full"
-              autoPlay
-              loop
-            ></video>
+            />
           </div>
           <div className="controls h-32 flex p-4 gap-4">
             <div className="flex flex-1 flex-col gap-2">
@@ -99,7 +86,7 @@ export default function WebcamPage() {
               }}
               disabled={inProgress}
             >
-              {inProgress ? <Loader className="animate-spin" /> : <Wand />}
+              {inProgress ? <Loader className="animate-spin" /> : <Pencil />}
             </Button>
           </div>
         </div>
