@@ -91,14 +91,14 @@ export default function WebcamPage() {
           </div>
         </div>
         <SideBar
-          name="Automatic Illustration Generation"
-          description="AI Expo"
+          name="No Pen Illustration"
+          description="Used by the ICP 2024 cohort to generate illustrations for their innovation projects."
           number={3}
           questions={[
-            "What is AI?",
-            "How does AI work?",
-            "What are the applications of AI?",
+            "How will we mark things created by human illustrators vs AI?",
+            "What will happen to human illustrator jobs?",
           ]}
+          tip="Be as descriptive as possible to get the best results."
         />
       </div>
     </main>

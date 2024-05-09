@@ -18,7 +18,9 @@ const EMPTY_IMG =
 
 export default function WebcamPage() {
   const [inProgress, setInProgress] = useState(false);
-  const [prompt, setPrompt] = useState<string>("a little toad on a lily pad");
+  const [prompt, setPrompt] = useState<string>(
+    "A boat steaming through a canal in a storm"
+  );
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [videoUrl, setVideoUrl] = useState<string | null>(null);
 
@@ -42,7 +44,8 @@ export default function WebcamPage() {
       "fal-ai/fast-animatediff/turbo/text-to-video",
       {
         input: {
-          prompt: `${prompt}, masterpiece, best quality, minimal, photorealistic`,
+          prompt: `${prompt}. masterpiece, best quality, minimal, photorealistic. lots of movement`,
+          negative_prompt: "low quality, blurry, pixelated, animation, cartoon",
         },
         logs: true,
         onQueueUpdate: (update) => {
@@ -104,14 +107,13 @@ export default function WebcamPage() {
           </div>
         </div>
         <SideBar
-          name="Animated Gif Generation"
-          description="AI Expo"
+          name="Short Animation Generation"
+          description="With incresing quality from R&D to production, we are able to generate short animations from text prompts. New models like OpenAI's Sora and RunwayML's Gen-2 are able to generate high quality animations with minimal input."
           number={2}
           questions={[
-            "What is AI?",
-            "How does AI work?",
-            "What are the applications of AI?",
+            "What will the film and media industry look like in 2030?",
           ]}
+          tip="Use a short and descriptive prompt that describes some kind of movement for best results."
         />
       </div>
     </main>

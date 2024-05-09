@@ -13,14 +13,14 @@ const apps = [
     icon: "camera",
   },
   {
-    name: "Fast Video Generation",
+    name: "Short Animation Generation",
     description: "Generate and play.",
     number: 2,
     route: "/vid",
     icon: "video",
   },
   {
-    name: "Illustration Generation",
+    name: "No Pen Illustration",
     description: "Generate and play.",
     number: 3,
     route: "/sketch",

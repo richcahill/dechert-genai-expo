@@ -226,14 +226,13 @@ export default function WebcamPage() {
           </div>
         </div>
         <SideBar
-          name="Real Time Image Generation (Deepfake)"
-          description="AI Expo"
+          name="Real Time Deepfake"
+          description="Though not absolutely perfect, we're seeing more and more instances of AI-generated deepfake videos that are indistinguishable from the real person. This is a real-time simulation doing the best it can to create a deepfake stream of the person you choose."
           number={1}
           questions={[
-            "What is AI?",
-            "How does AI work?",
-            "What are the applications of AI?",
+            "When the technology to deepfake videos becomes more accessible, how will it change the way we consume and trust media?",
           ]}
+          tip="Use the name of someone famous (that's probably included in training data) and move closer to the camera to get better results."
         />
       </div>
     </main>
