@@ -107,11 +107,13 @@ export default function WebcamPage() {
           </div>
         </div>
         <SideBar
-          name="Short Animation Generation"
-          description="With incresing quality from R&D to production, we are able to generate short animations from text prompts. New models like OpenAI's Sora and RunwayML's Gen-2 are able to generate high quality animations with minimal input."
+          name="Create Abstract Gifs"
+          title="Short Animation Generation"
+          description="With incresing quality from R&D to production, we can generate gifs from text prompts. This year we're seeing an uptick in what's possible with video — new (private) models like OpenAI's Sora and RunwayML's Gen-2 are able to generate high quality video content with minimal human input."
           number={2}
           questions={[
             "What will the film and media industry look like in 2030?",
+            "How will AI change the way we create and consume media?",
           ]}
           tip="Use a short and descriptive prompt that describes some kind of movement for best results."
         />

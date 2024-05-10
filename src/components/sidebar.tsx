@@ -2,6 +2,7 @@ import { Lightbulb } from "lucide-react";
 
 type SideBarProps = {
   name: string;
+  title: string;
   description: string;
   number: number;
   questions: string[];
@@ -10,6 +11,7 @@ type SideBarProps = {
 
 const SideBar = ({
   name,
+  title,
   description,
   number,
   questions,

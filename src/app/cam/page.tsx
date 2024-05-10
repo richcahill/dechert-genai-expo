@@ -226,8 +226,9 @@ export default function WebcamPage() {
           </div>
         </div>
         <SideBar
-          name="Real Time Deepfake"
-          description="Though not absolutely perfect, we're seeing more and more instances of AI-generated deepfake videos that are indistinguishable from the real person. This is a real-time simulation doing the best it can to create a deepfake stream of the person you choose."
+          name="Try on a New Face"
+          title="Real Time Deepfake"
+          description="Though not , we're seeing more and more instances of AI-generated deepfake videos that are indistinguishable from the real person. This is a real-time simulation doing the best it can to create a deepfake stream of the person you choose."
           number={1}
           questions={[
             "When the technology to deepfake videos becomes more accessible, how will it change the way we consume and trust media?",
