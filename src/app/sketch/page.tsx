@@ -136,7 +136,7 @@ export default function WebcamPage() {
           description={[
             "Type in the details of a drawing you would like the model to create for you in a matter of seconds.",
             "Click the pencil for a sketch or the camera for a realistic photo.",
-            "If you are not happy with the results, add or edit your instructions and try again.",
+            "If you are not happy with the results, add or edit instructions and try again.",
             "This model was developed and successfully used by Dechert's Innovation Certificate Program 2024 participants to generate illustrations for their innovation projects.",
           ]}
           number={2}
