@@ -65,7 +65,7 @@ export default function WebcamPage() {
 
   return (
     <main className="w-screen h-screen flex flex-col">
-      <NavBar />
+      <NavBar number={3} />
       <div className="flex-1 grid grid-cols-4 p-4 gap-2">
         <div className=" flex flex-col bg-zinc-50 col-span-3 rounded-md border relative overflow-hidden">
           <div className="w-full flex-1 flex items-center aspect-video overflow-hidden">
@@ -107,14 +107,15 @@ export default function WebcamPage() {
           </div>
         </div>
         <SideBar
-          name="Create Abstract Gifs"
+          name="Want to create your own GIF?"
           title="Short Animation Generation"
-          description="With incresing quality from R&D to production, we can generate gifs from text prompts. This year we're seeing an uptick in what's possible with video — new (private) models like OpenAI's Sora and RunwayML's Gen-2 are able to generate high quality video content with minimal human input."
-          number={2}
-          questions={[
-            "What will the film and media industry look like in 2030?",
-            "How will AI change the way we create and consume media?",
+          description={[
+            "Describe a scene with movement and let the AI will create a GIF for you in seconds.",
+            "Beware that the result can be somehow abstract (i.e. not exactly what you had in mind) but this is the best that can be done with this technology in 2024.",
+            "However, this year we've seen an uptick in what's possible with video. New private models like OpenAI's Sora and RunwayML's Gen-2 are able to generate high quality video content with minimal human input - stay tuned.",
           ]}
+          thought="What will the film and media industry look like in 2030?"
+          number={3}
           tip="Use a short and descriptive prompt that describes some kind of movement for best results."
         />
       </div>

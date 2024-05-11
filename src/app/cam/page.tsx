@@ -182,7 +182,7 @@ export default function WebcamPage() {
 
   return (
     <main className="w-screen h-screen flex flex-col">
-      <NavBar />
+      <NavBar number={1} />
       <div className="flex-1 grid grid-cols-4 p-4 gap-2">
         <div className=" flex flex-col bg-zinc-50 col-span-3 rounded-md border relative overflow-hidden">
           <video ref={videoRef} style={{ display: "none" }}></video>
@@ -226,13 +226,15 @@ export default function WebcamPage() {
           </div>
         </div>
         <SideBar
-          name="Try on a New Face"
+          name="Want to look like your favourite actor, author or celebrity in real time?"
           title="Real Time Deepfake"
-          description="Though not , we're seeing more and more instances of AI-generated deepfake videos that are indistinguishable from the real person. This is a real-time simulation doing the best it can to create a deepfake stream of the person you choose."
-          number={1}
-          questions={[
-            "When the technology to deepfake videos becomes more accessible, how will it change the way we consume and trust media?",
+          description={[
+            "Type in the name of someone famous and you will see your face transformed to look like them.",
+            "This is a real-time simulation doing the best it can to create a deepfake stream of the person you choose.",
+            "The power of this model is in “repainting” the entire frame fast, which leads to a slightly blurry, painterly look.",
           ]}
+          number={1}
+          thought="When the technology to deepfake videos becomes more accessible to a wider audience, how will it change the way we consume and trust media?"
           tip="Use the name of someone famous (that's probably included in training data) and move closer to the camera to get better results."
         />
       </div>
