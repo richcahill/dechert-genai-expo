@@ -56,8 +56,8 @@ export default function WebcamPage() {
       body: JSON.stringify({ prompt: sketchPrompt }),
     });
     const data = await response.json();
-    setSketchInProgress(false);
     setImageUrl(data[0].url);
+    setSketchInProgress(false);
   };
 
   const getImage = async () => {
@@ -73,8 +73,8 @@ export default function WebcamPage() {
       body: JSON.stringify({ prompt: sketchPrompt }),
     });
     const data = await response.json();
-    setPhotoInProgress(false);
     setImageUrl(data[0].url);
+    setPhotoInProgress(false);
   };
 
   return (
@@ -82,18 +82,28 @@ export default function WebcamPage() {
       <NavBar number={2} />
       <div className="flex-1 grid grid-cols-4 p-4 gap-2">
         <div className=" flex flex-col bg-zinc-50 col-span-3 rounded-md border relative overflow-hidden">
-          <div className="w-full flex-1 flex items-center aspect-video overflow-hidden">
-            <img
-              src={imageUrl || EMPTY_IMG}
-              width={512}
-              height={512}
-              className="w-full"
-              alt="generated"
-            />
+          <div className="w-full flex-1 flex items-center aspect-video overflow-hidden bg-zinc-500 relative">
+            {imageUrl && (
+              <img
+                src={imageUrl || EMPTY_IMG}
+                width={512}
+                height={512}
+                className="w-full"
+                alt="generated"
+              />
+            )}
+
+            {(sketchInProgress || photoInProgress) && (
+              <div className="absolute inset-0 bg-zinc-800/50 flex items-center justify-center">
+                <Loader className="animate-spin text-white" />
+              </div>
+            )}
           </div>
           <div className="controls h-32 flex p-4 gap-4">
             <div className="flex flex-1 flex-col gap-2">
-              <div>What would you like to generate a drawing of?</div>
+              <div className="text-lg">
+                What would you like to generate a drawing of?
+              </div>
               <input
                 value={prompt}
                 onChange={(e) => setPrompt(e.target.value)}

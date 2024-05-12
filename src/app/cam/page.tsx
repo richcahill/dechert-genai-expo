@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import NavBar from "@/components/nav-bar";
 import SideBar from "@/components/sidebar";
 import Icon from "@/components/icon";
+import { Loader } from "lucide-react";
 
 fal.config({
   proxyUrl: "/api/fal/proxy",
@@ -184,17 +185,9 @@ export default function WebcamPage() {
     <main className="w-screen h-screen flex flex-col">
       <NavBar number={1} />
       <div className="flex-1 grid grid-cols-4 p-4 gap-2">
-        <div className=" flex flex-col bg-zinc-50 col-span-3 rounded-md border relative overflow-hidden">
+        <div className=" flex flex-col bg-zinc-50 dark:bg-zinc-900 dark:text-white col-span-3 rounded-md border relative overflow-hidden">
           <video ref={videoRef} style={{ display: "none" }}></video>
-          <div className="top-4 left-4 absolute w-48 border border-white rounded-md flex items-center overflow-hidden">
-            <canvas
-              ref={previewRef}
-              width="512"
-              height="512"
-              className="w-full"
-            ></canvas>
-          </div>
-          <div className="w-full flex-1 flex items-center aspect-video overflow-hidden">
+          <div className="w-full flex-1 flex items-center aspect-video overflow-hidden relative">
             <img
               ref={processedImageRef}
               src={EMPTY_IMG}
@@ -204,9 +197,18 @@ export default function WebcamPage() {
               alt="generated"
             />
           </div>
+          <div className="top-4 left-4 absolute w-48 border border-white rounded-md flex items-center overflow-hidden z-50">
+            <canvas
+              ref={previewRef}
+              width="512"
+              height="512"
+              className="w-full"
+            ></canvas>
+          </div>
+
           <div className="controls h-32 flex p-4 gap-4">
             <div className="flex flex-1 flex-col gap-2">
-              <div>Who would you like to appear as?</div>
+              <div className="text-lg">Who would you like to appear as?</div>
               <input
                 value={prompt}
                 onChange={(e) => setPrompt(e.target.value)}

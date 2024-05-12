@@ -68,7 +68,7 @@ export default function WebcamPage() {
       <NavBar number={3} />
       <div className="flex-1 grid grid-cols-4 p-4 gap-2">
         <div className=" flex flex-col bg-zinc-50 col-span-3 rounded-md border relative overflow-hidden">
-          <div className="w-full flex-1 flex items-center aspect-video overflow-hidden">
+          <div className="w-full flex-1 flex items-center aspect-video overflow-hidden bg-zinc-500 relative">
             {/* <img
               src={imageUrl || EMPTY_IMG}
               width={512}
@@ -76,17 +76,26 @@ export default function WebcamPage() {
               className="w-full"
               alt="generated"
             /> */}
-            <video
-              src={videoUrl || ""}
-              controls
-              className="w-full"
-              autoPlay
-              loop
-            ></video>
+            {videoUrl && (
+              <video
+                src={videoUrl || ""}
+                controls
+                className="w-full"
+                autoPlay
+                loop
+              ></video>
+            )}
+            {inProgress && (
+              <div className="absolute inset-0 bg-zinc-800/50 flex items-center justify-center">
+                <Loader className="animate-spin text-white" />
+              </div>
+            )}
           </div>
           <div className="controls h-32 flex p-4 gap-4">
             <div className="flex flex-1 flex-col gap-2">
-              <div>What would you like to generate a video of?</div>
+              <div className="text-lg">
+                What would you like to generate an animated gif of?
+              </div>
               <input
                 value={prompt}
                 onChange={(e) => setPrompt(e.target.value)}
@@ -111,10 +120,10 @@ export default function WebcamPage() {
           title="Short Animation Generation"
           description={[
             "Describe a scene with movement and let the AI will create a GIF for you in seconds.",
-            "Beware that the result can be somehow abstract (i.e. not exactly what you had in mind) but this is the best that can be done with this technology in 2024.",
-            "However, this year we've seen an uptick in what's possible with video. New private models like OpenAI's Sora and RunwayML's Gen-2 are able to generate high quality video content with minimal human input - stay tuned.",
+            "Be aware that the result can be somehow abstract (i.e. not exactly what you had in mind) but this is a taste of what's to come.",
+            "However, this year we've seen an uptick in what's possible with video. New private models being released this year like OpenAI's Sora and RunwayML's Gen-2 are able to generate high quality video content with minimal human input - stay tuned.",
           ]}
-          thought="What will the film and media industry look like in 2030?"
+          thought="What will the film and media industry look like in 2030? Can you tell what data this AI was trained with?"
           number={3}
           tip="Use a short and descriptive prompt that describes some kind of movement for best results."
         />
