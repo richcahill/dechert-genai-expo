@@ -116,12 +116,12 @@ export default function WebcamPage() {
           </div>
         </div>
         <SideBar
-          name="Want to create your own GIF?"
+          name="Want to create your own abstract GIF?"
           title="Short Animation Generation"
           description={[
             "Describe a scene with movement and let the AI will create a GIF for you in seconds.",
-            "Be aware that the result can be somehow abstract (i.e. not exactly what you had in mind) but this is a taste of what's to come.",
-            "However, this year we've seen an uptick in what's possible with video. New private models being released this year like OpenAI's Sora and RunwayML's Gen-2 are able to generate high quality video content with minimal human input - stay tuned.",
+            "Be aware that the result can be somehow abstract (i.e. not exactly what you had in mind) but this is a taste of what's to come while trading off quality for speed.",
+            "However, this year we've seen an uptick in what's possible with AI video. New private models being released this year like OpenAI's Sora and RunwayML's Gen-2 are able to generate high quality video content with minimal human input - stay tuned.",
           ]}
           thought="What will the film and media industry look like in 2030? Can you tell what data this AI was trained with?"
           number={3}
