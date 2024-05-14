@@ -44,7 +44,7 @@ export default function WebcamPage() {
       "fal-ai/fast-animatediff/turbo/text-to-video",
       {
         input: {
-          prompt: `${prompt}. masterpiece, best quality, minimal, photorealistic. abstract. lots of movement`,
+          prompt: `${prompt}. masterpiece, best quality, photorealistic, lots of movement`,
           negative_prompt:
             "low quality, blurry, pixelated, animation, cartoon, face, human",
         },
