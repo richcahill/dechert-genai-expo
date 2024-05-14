@@ -118,7 +118,7 @@ export default function WebcamPage() {
               </div>
             )}
           </div>
-          <div className="controls h-32 flex p-4 gap-4">
+          <div className="controls flex p-4 gap-4">
             <div className="flex flex-1 flex-col gap-2">
               <div className="flex justify-start gap-8 items-baseline">
                 <div className="text-lg text-zinc-700">
