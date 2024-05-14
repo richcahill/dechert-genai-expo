@@ -13,14 +13,14 @@ fal.config({
   proxyUrl: "/api/fal/proxy",
 });
 
+const samples = ["snowstorm", "confetti", "fireworks", "aurora borealis"];
+
 const EMPTY_IMG =
   "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAA1JREFUGFdjOHPmzH8ACDADZKt3GNsAAAAASUVORK5CYII=";
 
 export default function WebcamPage() {
   const [inProgress, setInProgress] = useState(false);
-  const [prompt, setPrompt] = useState<string>(
-    "A boat steaming through a canal in a storm"
-  );
+  const [prompt, setPrompt] = useState<string>("aurora borealis");
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [videoUrl, setVideoUrl] = useState<string | null>(null);
 
@@ -44,8 +44,9 @@ export default function WebcamPage() {
       "fal-ai/fast-animatediff/turbo/text-to-video",
       {
         input: {
-          prompt: `${prompt}. masterpiece, best quality, minimal, photorealistic. lots of movement`,
-          negative_prompt: "low quality, blurry, pixelated, animation, cartoon",
+          prompt: `${prompt}. masterpiece, best quality, minimal, photorealistic. abstract. lots of movement`,
+          negative_prompt:
+            "low quality, blurry, pixelated, animation, cartoon, face, human",
         },
         logs: true,
         onQueueUpdate: (update) => {
@@ -67,6 +68,18 @@ export default function WebcamPage() {
     <main className="w-screen h-screen flex flex-col">
       <NavBar number={3} />
       <div className="flex-1 grid grid-cols-4 p-4 gap-2">
+        <SideBar
+          name="Want to create your own abstract GIF?"
+          title="Short Animation Generation"
+          description={[
+            "Describe a scene with movement and let the AI will create a GIF for you in seconds.",
+            "Be aware that the result can be somehow abstract (i.e. not exactly what you had in mind) but this is a taste of what's to come while trading off quality for speed.",
+            "However, this year we've seen an uptick in what's possible with AI video. New private models being released this year like OpenAI's Sora and RunwayML's Gen-2 are able to generate high quality video content with minimal human input - stay tuned.",
+          ]}
+          thought="What will the film and media industry look like in 2030? Can you tell what data this AI was trained with?"
+          number={3}
+          tip="Use a short and descriptive prompt that describes some kind of movement for best results."
+        />
         <div className=" flex flex-col bg-zinc-50 col-span-3 rounded-md border relative overflow-hidden">
           <div className="w-full flex-1 flex items-center aspect-video overflow-hidden bg-zinc-500 relative">
             {/* <img
@@ -93,13 +106,27 @@ export default function WebcamPage() {
           </div>
           <div className="controls h-32 flex p-4 gap-4">
             <div className="flex flex-1 flex-col gap-2">
-              <div className="text-lg">
-                What would you like to generate an animated gif of?
+              <div className="text-lg"></div>
+              <div className="flex justify-start gap-8 items-baseline">
+                <div className="text-lg text-zinc-700">
+                  What would you like to generate an abstract gif of?
+                </div>
+                <div className="flex justify-end gap-2">
+                  {samples.map((sample, i) => (
+                    <div
+                      className="rounded-full px-3 py-0.5 border border-zinc-400 cursor-pointer italic hover:bg-zinc-100 bg-white transition-all text-zinc-400"
+                      key={i}
+                      onClick={() => setPrompt(sample)}
+                    >
+                      {sample}
+                    </div>
+                  ))}
+                </div>
               </div>
               <input
                 value={prompt}
                 onChange={(e) => setPrompt(e.target.value)}
-                className="text-4xl bg-transparent border-b-2 p-2 pb-3 border-zinc-300 w-full"
+                className="text-4xl bg-transparent border-b-2 p-2 pl-1 border-zinc-300 w-full"
                 autoFocus
                 placeholder="Enter a name"
               />
@@ -115,18 +142,6 @@ export default function WebcamPage() {
             </Button>
           </div>
         </div>
-        <SideBar
-          name="Want to create your own abstract GIF?"
-          title="Short Animation Generation"
-          description={[
-            "Describe a scene with movement and let the AI will create a GIF for you in seconds.",
-            "Be aware that the result can be somehow abstract (i.e. not exactly what you had in mind) but this is a taste of what's to come while trading off quality for speed.",
-            "However, this year we've seen an uptick in what's possible with AI video. New private models being released this year like OpenAI's Sora and RunwayML's Gen-2 are able to generate high quality video content with minimal human input - stay tuned.",
-          ]}
-          thought="What will the film and media industry look like in 2030? Can you tell what data this AI was trained with?"
-          number={3}
-          tip="Use a short and descriptive prompt that describes some kind of movement for best results."
-        />
       </div>
     </main>
   );

@@ -130,6 +130,8 @@ type LCMOutput = {
   nsfw_content_detected: boolean[];
 };
 
+const samples = ["leonardo di caprio", "blake lively", "beyonce"];
+
 export default function WebcamPage() {
   const [enabled, setEnabled] = useState(false);
   const processedImageRef = useRef<HTMLImageElement | null>(null);
@@ -185,7 +187,19 @@ export default function WebcamPage() {
     <main className="w-screen h-screen flex flex-col">
       <NavBar number={1} />
       <div className="flex-1 grid grid-cols-4 p-4 gap-2">
-        <div className=" flex flex-col bg-zinc-50 dark:bg-zinc-900 dark:text-white col-span-3 rounded-md border relative overflow-hidden">
+        <SideBar
+          name="Want to look like your favourite celebrity in real time?"
+          title="Real Time Deepfake"
+          description={[
+            "Type in the name of someone famous and you will see your face transformed to look like them.",
+            "This is a real-time simulation doing the best it can to create a deepfake stream of the person you choose.",
+            "The power of this model is in “repainting” the entire frame fast, which leads to a slightly blurry, painterly look.",
+          ]}
+          number={1}
+          thought="When the technology to deepfake videos becomes more accessible to a wider audience, how will it change the way we consume and trust media?"
+          tip="Use the name of someone famous (that's probably included in training data) and move closer to the camera to get better results."
+        />
+        <div className="flex flex-col bg-zinc-50 dark:bg-zinc-900 dark:text-white col-span-3 rounded-md border relative overflow-hidden">
           <video ref={videoRef} style={{ display: "none" }}></video>
           <div className="w-full flex-1 flex items-center aspect-video overflow-hidden relative">
             <img
@@ -206,13 +220,28 @@ export default function WebcamPage() {
             ></canvas>
           </div>
 
-          <div className="controls h-32 flex p-4 gap-4">
+          <div className="controls flex p-4 gap-4">
             <div className="flex flex-1 flex-col gap-2">
-              <div className="text-lg">Who would you like to appear as?</div>
+              <div className="flex justify-start gap-8 items-baseline">
+                <div className="text-lg text-zinc-700">
+                  Who would you like to appear as?
+                </div>
+                <div className="flex justify-end gap-2">
+                  {samples.map((sample, i) => (
+                    <div
+                      className="rounded-full px-3 py-0.5 border border-zinc-400 cursor-pointer italic hover:bg-zinc-100 bg-white transition-all text-zinc-400"
+                      key={i}
+                      onClick={() => setPrompt(sample)}
+                    >
+                      {sample}
+                    </div>
+                  ))}
+                </div>
+              </div>
               <input
                 value={prompt}
                 onChange={(e) => setPrompt(e.target.value)}
-                className="text-4xl bg-transparent border-b-2 p-2 pb-3 border-zinc-300 w-full"
+                className="text-4xl bg-transparent border-b-2 p-2 pl-1 border-zinc-400 w-full"
                 autoFocus
                 placeholder="Enter a name"
               />
@@ -227,18 +256,6 @@ export default function WebcamPage() {
             </Button>
           </div>
         </div>
-        <SideBar
-          name="Want to look like your favourite actor, author or celebrity in real time?"
-          title="Real Time Deepfake"
-          description={[
-            "Type in the name of someone famous and you will see your face transformed to look like them.",
-            "This is a real-time simulation doing the best it can to create a deepfake stream of the person you choose.",
-            "The power of this model is in “repainting” the entire frame fast, which leads to a slightly blurry, painterly look.",
-          ]}
-          number={1}
-          thought="When the technology to deepfake videos becomes more accessible to a wider audience, how will it change the way we consume and trust media?"
-          tip="Use the name of someone famous (that's probably included in training data) and move closer to the camera to get better results."
-        />
       </div>
     </main>
   );

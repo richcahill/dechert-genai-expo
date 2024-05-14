@@ -7,7 +7,7 @@ interface NavBarProps {
 
 const NavBar = ({ number }: NavBarProps) => {
   return (
-    <nav className="p-8 text-2xl font-medium text-white">
+    <nav className="pt-8 p-4 pb-0 text-2xl font-medium text-white">
       <Link href={"/"} className="flex gap-2 hover:opacity-80 transition-all">
         <div>Dechert AI Expo</div>
         <div className="opacity-50">Experiential Station #{number}</div>
