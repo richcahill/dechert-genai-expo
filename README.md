@@ -1,3 +1,3 @@
-## Cam AI
+# GenAI Expo
 
-Real time generation based on a [Fal.ai](https://fal.ai) stable diffusion turbo endpoint.
+A set of interactive installations made for Dechert.
